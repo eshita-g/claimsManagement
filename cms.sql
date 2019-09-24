@@ -1,0 +1,12 @@
+create database cms1;
+use cms1;
+create table member(mem_id varchar(10) primary key,fn varchar(10) not null,gender varchar(7),ln varchar(10)not null,age int,dob DATE,cnt_no varchar(10),email varchar(20)not null,password varchar(15)not null,plan_code varchar(10),cov_start_date DATE,cov_end_date Date,address varchar(100),city varchar(10),state varchar(10),zip_code int);
+create table admin(admin_id varchar(10) primary key,fn varchar(10) not null,gender varchar(7),ln varchar(10)not null,age int,dob DATE,cnt_no varchar(10),email varchar(20)not null,password varchar(15)not null);
+alter table member add status varchar(10);
+create table claim(claim_id varchar(10) primary key ,mem_id varchar(10) ,work_accident varchar(3),auto_accident  varchar(3),date_of_accident date, foreign key(mem_id) references  member(mem_id));
+alter table claim add claim_amount int(11);
+alter table claim add adhaar mediumblob NOT NULL;
+alter table claim add bills mediumblob NOT NULL;
+alter table claim add claim_status varchar(10)  default "open";
+alter table claim add approve_status varchar(10);
+alter table member drop claim; 
